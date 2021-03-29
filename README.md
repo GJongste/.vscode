@@ -26,18 +26,18 @@ This Ketenstandaard Api REST Client can be used to see the Ketenstandaard Api RE
 Some variables are used from the settings file. 
 - Create a settings.json file in the directory .vscode --> ".vscode/settings.json"
 - Copy this into the setting.json file:
-  ```json
-  {
-    "rest-client.environmentVariables": {
-		"production": {
-			"authUrl": "https://authorize.ketenstandaard.nl",
-			"baseUrl": "https://api.ketenstandaard.nl/api/v1",
-			"client_id": "",
-			"client_secret": ""
-		}
+```json
+{
+"rest-client.environmentVariables": {
+	"production": {
+		"authUrl": "https://authorize.ketenstandaard.nl",
+		"baseUrl": "https://api.ketenstandaard.nl/api/v1",
+		"client_id": "",
+		"client_secret": ""
 	}
-  }
-  ```
+}
+}
+```
 - Fill in the client_id/client_secret you received from Ketenstandaard
 
 ## Start you first request

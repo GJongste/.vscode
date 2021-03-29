@@ -1,0 +1,124 @@
+### variables from .vscode/settings.json
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api Api.Superclass
+
+
+###
+# LinkTypes
+GET {{baseUrl}}/Superclass/LinkTypes HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Types
+GET {{baseUrl}}/Superclass/Types HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Levels
+GET {{baseUrl}}/Superclass/Levels HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+
+###
+# Translations
+POST {{baseUrl}}/Superclass/Translations HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"ClassCodes": ["CC000009", "CC000011", "CC0000013", "CC000014"]
+}
+
+
+###
+# Search
+POST {{baseUrl}}/Superclass/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"Searchstring": "Radiator",
+	"Types": ["recipe", "hierarchal", "set"],
+	"Size": 10
+}
+
+###
+# Search
+POST {{baseUrl}}/Superclass/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"LinkCode": "56.81",
+	"LinkType": "NLSfB",
+	"Size": 10
+}
+
+###
+# Features
+POST {{baseUrl}}/Superclass/Features HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Code": "CC000011"
+}
+
+###
+# Links
+POST {{baseUrl}}/Superclass/Links HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Code": "CC000011"
+}
+
+###
+# Children
+POST {{baseUrl}}/Superclass/Children HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Code": "CC000011"
+}
+
+###
+# Details
+POST {{baseUrl}}/Superclass/Details HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"Code": "CC000011"
+}
+
+###
+# Tree
+GET {{baseUrl}}/Superclass/Tree HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# TopLevel
+GET {{baseUrl}}/Superclass/TopLevel HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###

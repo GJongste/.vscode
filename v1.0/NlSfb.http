@@ -1,0 +1,91 @@
+
+### variables from .vscode/settings.json
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api ApiNlSfb
+
+
+###
+# NlSfbRoot
+POST {{baseUrl}}/Standards/NlSfbRoot HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL"
+}
+
+###
+# NlSfbRoot
+POST {{baseUrl}}/Standards/NlSfbRoot HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"Include": {
+		"Descriptions": true,
+		"Translations": true
+	}
+}
+
+###
+# Details
+POST {{baseUrl}}/Standards/Details HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"Id": "962d75e0-eddb-4277-86b5-36901851094a"
+}
+
+###
+# Details
+POST {{baseUrl}}/Standards/Details HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"Id": "962d75e0-eddb-4277-86b5-36901851094a",
+	"Include": {
+		"Descriptions": false,
+		"Translations": false
+	}
+}
+
+###
+# NlSfbChildren
+POST {{baseUrl}}/Standards/NlSfbChildren HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"Id": "962d75e0-eddb-4277-86b5-36901851094a"
+}
+
+###
+# NlSfbChildren
+POST {{baseUrl}}/Standards/NlSfbChildren HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"Languagecode": "nl-NL",
+	"Id": "962d75e0-eddb-4277-86b5-36901851094a",
+	"Include": {
+		"Descriptions": true,
+		"Translations": true
+	}
+}
+
+###

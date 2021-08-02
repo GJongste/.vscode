@@ -44,6 +44,6 @@ Some variables are used from the settings file.
 ## Start you first request
 * Open one of the .http files in Visual Studio Code
 * Switch the environment in the Status bar to "production"
-* Click on "Send Request" in the "ClientCredentialsGrant". Or place your cursor between ### and ### and use the keyboar shortcut ctrl-alt-r. This service will fetch an access-token that will be used in subsequential requests.
+* Click on "Send Request" in the "ClientCredentialsGrant". Or place your cursor between ### and ### and use the keyboard shortcut ctrl-alt-r. This service will fetch an access-token that will be used in subsequential requests.
 * Next click on "Send Request" above one of the service calls.
 

@@ -88,3 +88,9 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 GET {{baseUrl}}/Participant/Profile/e689ae0e-dbb3-4c08-a1ef-df3f8f7784c6 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Participant GetBySlug
+GET {{baseUrl}}/Participant/GetBySlug/bouwfaktor HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

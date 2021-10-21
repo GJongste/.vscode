@@ -70,6 +70,21 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 }
 
 ###
+# Search on STABU licenseNumber
+POST {{baseUrl}}/Participant/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"From": 0,
+	"Size": 10,
+	"SortField": "ParticipantOfDateStart",
+	"SortOrder": "Descending",
+	"SearchString": "L 19.35.01 E"
+}
+
+
+###
 # Aggs
 POST {{baseUrl}}/Participant/Aggregations HTTP/1.1
 Content-Type: application/json

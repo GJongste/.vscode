@@ -1,0 +1,53 @@
+
+### variables from .vscode/settings.json
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/2.0
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api ApiStabu
+
+###
+# Get version
+GET {{baseUrl}}/Stabu/GetVersion HTTP/2.0
+Content-Type: application/json
+
+
+###
+# Get index categories
+GET {{baseUrl}}/Stabu/GetIndexCategories
+?startIndex=0
+&resultsToGet=1000 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get root indexes
+GET {{baseUrl}}/Stabu/GetStartingPoints
+?startIndex=0
+&resultsToGet=1000
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get index
+GET {{baseUrl}}/Stabu/GetIndexByGUID
+?guid=c54ed438-7b17-4920-9be4-eb9967b733a6
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get child indexes
+GET {{baseUrl}}/Stabu/GetIndexesByParentGUID
+?guid=d51ff688-d84c-4914-8dc8-5ee7939c7a53
+&startIndex=0
+&resultsToGet=1000
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

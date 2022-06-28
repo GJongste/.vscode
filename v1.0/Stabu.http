@@ -28,6 +28,15 @@ Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
+# Get index categories
+GET {{baseUrl}}/Stabu/GetIndexCategoriesByParentId
+?parentId=8002
+&startIndex=0
+&resultsToGet=1000 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
 # Get root indexes
 GET {{baseUrl}}/Stabu/GetStartingPoints
 ?startIndex=0

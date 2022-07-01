@@ -62,3 +62,13 @@ GET {{baseUrl}}/Stabu/GetIndexesByParentGUID
 &language=en-GB HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get child indexes
+GET {{baseUrl}}/Stabu/GetIndexesByChildGUID
+?guid=0016cc9e-fe7f-444b-bc6c-24de24b3c12f
+&startIndex=0
+&resultsToGet=1000
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

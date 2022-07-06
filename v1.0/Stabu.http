@@ -72,3 +72,52 @@ GET {{baseUrl}}/Stabu/GetIndexesByChildGUID
 &language=en-GB HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Search concepts
+POST {{baseUrl}}/Stabu/SearchConcepts
+?startIndex=0
+&resultsToGet=1000
+&includeConceptGroups=false HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "Guid": "6d22ea56-fea7-4133-833e-aa2a67c23c90",
+    "GroupTypeId": 2,
+    "VariantTypeId": 38,
+    "CustomerName": "*Beschlage*"
+}
+
+###
+# Search concepts
+POST {{baseUrl}}/Stabu/SearchConcepts
+?startIndex=0
+&resultsToGet=1000
+&includeConceptGroups=false HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "Flags": ["AlsoExistingWork"],
+    "IndexLinks": ["4c155578-0137-432f-bad4-2e18762d2465", "55904b2e-d9e3-4ff7-8b28-ad0daa4a2e8a"],
+    "Keywords": "a?nbr?ngen*",
+    "DocumentCode": "RR425530*"
+}
+
+###
+# Search concepts with groups included in result
+POST {{baseUrl}}/Stabu/SearchConcepts
+?startIndex=0
+&resultsToGet=1000
+&includeConceptGroups=true HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "AuthorId": 9,
+    "GroupTypeId": 2,
+    "VariantTypeId": 38,
+    "Status": "published",
+    "Name": "Maco*"
+}

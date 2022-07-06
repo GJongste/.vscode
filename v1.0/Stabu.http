@@ -136,3 +136,9 @@ GET {{baseUrl}}/Stabu/GetManufacturerByConceptGUID
 ?guid=6cede606-9b73-4b08-ae7d-c1c5492e19a1 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get all concept group types
+GET {{baseUrl}}/Stabu/GetAllConceptGroupTypes HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

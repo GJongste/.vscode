@@ -123,8 +123,16 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 }
 
 ###
-# Get manufacturer
+# Get customer
 GET {{baseUrl}}/Stabu/GetCustomerById
 ?id=5668 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+
+###
+# Get manufacturer by concept guid
+GET {{baseUrl}}/Stabu/GetManufacturerByConceptGUID
+?guid=6cede606-9b73-4b08-ae7d-c1c5492e19a1 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

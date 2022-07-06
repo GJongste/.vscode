@@ -121,3 +121,10 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
     "Status": "published",
     "Name": "Maco*"
 }
+
+###
+# Get manufacturer
+GET {{baseUrl}}/Stabu/GetCustomerById
+?id=5668 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

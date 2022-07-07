@@ -11,6 +11,7 @@ This Ketenstandaard Api REST Client can be used to see the Ketenstandaard Api RE
 ## Prerequisites
 
 * client_id/client_secret from Ketenstandaard
+* Ketenstandaard account credentials (username/password)
 * Installation of git
 * Installation of Visual Studio Code
 * Installation of the REST Client extension
@@ -36,12 +37,15 @@ Some variables are used from the settings file.
 		"authUrl": "https://authorize.ketenstandaard.nl",
 		"baseUrl": "https://api.ketenstandaard.nl/api/v1",
 		"client_id": "",
-		"client_secret": ""
+		"client_secret": "",
+		"user_name": "",
+		"user_password": ""
 	}
 }
 }
 ```
 * Fill in the client_id/client_secret you received from Ketenstandaard
+* Fill in the user_name/user_password with your Ketenstandaard account credentials
 
 ## Start you first request
 * Open one of the .http files in Visual Studio Code

@@ -1,0 +1,144 @@
+
+### variables from .vscode/settings.json
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/2.0
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&username={{user_name}}
+&password={{user_password}}
+&scope=Api ApiStabu
+
+###
+# Get version
+GET {{baseUrl}}/Stabu/GetVersion HTTP/2.0
+Content-Type: application/json
+
+
+###
+# Get index categories
+GET {{baseUrl}}/Stabu/GetIndexCategories
+?startIndex=0
+&resultsToGet=1000 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get index categories
+GET {{baseUrl}}/Stabu/GetIndexCategoriesByParentId
+?parentId=8002
+&startIndex=0
+&resultsToGet=1000 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get root indexes
+GET {{baseUrl}}/Stabu/GetStartingPoints
+?startIndex=0
+&resultsToGet=1000
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get index
+GET {{baseUrl}}/Stabu/GetIndexByGUID
+?guid=c54ed438-7b17-4920-9be4-eb9967b733a6
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get child indexes
+GET {{baseUrl}}/Stabu/GetIndexesByParentGUID
+?guid=d51ff688-d84c-4914-8dc8-5ee7939c7a53
+&startIndex=0
+&resultsToGet=1000
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get child indexes
+GET {{baseUrl}}/Stabu/GetIndexesByChildGUID
+?guid=0016cc9e-fe7f-444b-bc6c-24de24b3c12f
+&startIndex=0
+&resultsToGet=1000
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Search concepts
+POST {{baseUrl}}/Stabu/SearchConcepts
+?startIndex=0
+&resultsToGet=1000
+&includeConceptGroups=false HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "Guid": "6d22ea56-fea7-4133-833e-aa2a67c23c90",
+    "GroupTypeId": 2,
+    "VariantTypeId": 38,
+    "CustomerName": "*Beschlage*"
+}
+
+###
+# Search concepts
+POST {{baseUrl}}/Stabu/SearchConcepts
+?startIndex=0
+&resultsToGet=1000
+&includeConceptGroups=false HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "Flags": ["AlsoExistingWork"],
+    "IndexLinks": ["4c155578-0137-432f-bad4-2e18762d2465", "55904b2e-d9e3-4ff7-8b28-ad0daa4a2e8a"],
+    "Keywords": "a?nbr?ngen*",
+    "DocumentCode": "RR425530*"
+}
+
+###
+# Search concepts with groups included in result
+POST {{baseUrl}}/Stabu/SearchConcepts
+?startIndex=0
+&resultsToGet=1000
+&includeConceptGroups=true HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "AuthorId": 9,
+    "GroupTypeId": 2,
+    "VariantTypeId": 38,
+    "Status": "published",
+    "Name": "Maco*"
+}
+
+###
+# Get customer
+GET {{baseUrl}}/Stabu/GetCustomerById
+?id=5668 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+
+###
+# Get manufacturer by concept guid
+GET {{baseUrl}}/Stabu/GetManufacturerByConceptGUID
+?guid=6cede606-9b73-4b08-ae7d-c1c5492e19a1 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get all concept group types
+GET {{baseUrl}}/Stabu/GetAllConceptGroupTypes HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

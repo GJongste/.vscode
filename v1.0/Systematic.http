@@ -173,3 +173,9 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 GET {{baseUrl}}/Systematic/GetAllConceptGroupTypes HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get all concept variant types
+GET {{baseUrl}}/Systematic/GetAllConceptVariantTypes HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

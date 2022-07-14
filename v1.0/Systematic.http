@@ -11,25 +11,34 @@ grant_type=password
 &client_secret={{client_secret}}
 &username={{user_name}}
 &password={{user_password}}
-&scope=Api ApiStabu
+&scope=Api ApiSystematic
 
 ###
 # Get version
-GET {{baseUrl}}/Stabu/GetVersion HTTP/2.0
+GET {{baseUrl}}/Systematic/GetVersion HTTP/2.0
 Content-Type: application/json
 
 
 ###
 # Get index categories
-GET {{baseUrl}}/Stabu/GetIndexCategories
+GET {{baseUrl}}/Systematic/GetIndexCategories
 ?startIndex=0
 &resultsToGet=1000 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
+# Get filtered index categories
+GET {{baseUrl}}/Systematic/GetIndexCategories
+?startIndex=0
+&resultsToGet=1000
+&requestedElements=7000,7001,7002,7003,7004 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
 # Get index categories
-GET {{baseUrl}}/Stabu/GetIndexCategoriesByParentId
+GET {{baseUrl}}/Systematic/GetIndexCategoriesByParentId
 ?parentId=8002
 &startIndex=0
 &resultsToGet=1000 HTTP/2.0
@@ -38,7 +47,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get root indexes
-GET {{baseUrl}}/Stabu/GetStartingPoints
+GET {{baseUrl}}/Systematic/GetStartingPoints
 ?startIndex=0
 &resultsToGet=1000
 &language=en-GB HTTP/2.0
@@ -47,7 +56,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get index
-GET {{baseUrl}}/Stabu/GetIndexByGUID
+GET {{baseUrl}}/Systematic/GetIndexByGUID
 ?guid=c54ed438-7b17-4920-9be4-eb9967b733a6
 &language=en-GB HTTP/2.0
 Content-Type: application/json
@@ -55,8 +64,8 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get child indexes
-GET {{baseUrl}}/Stabu/GetIndexesByParentGUID
-?guid=d51ff688-d84c-4914-8dc8-5ee7939c7a53
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+?guid=64071d09-ecea-45e8-b194-9d1c88bcc0c2
 &startIndex=0
 &resultsToGet=1000
 &language=en-GB HTTP/2.0
@@ -64,8 +73,19 @@ Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
-# Get child indexes
-GET {{baseUrl}}/Stabu/GetIndexesByChildGUID
+# Get filtered child indexes
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+?guid=64071d09-ecea-45e8-b194-9d1c88bcc0c2
+&startIndex=0
+&resultsToGet=1000
+&language=en-GB
+&requestedElements=7004 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get parent indexes
+GET {{baseUrl}}/Systematic/GetIndexesByChildGUID
 ?guid=0016cc9e-fe7f-444b-bc6c-24de24b3c12f
 &startIndex=0
 &resultsToGet=1000
@@ -74,8 +94,19 @@ Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
+# Get filtered parent indexes
+GET {{baseUrl}}/Systematic/GetIndexesByChildGUID
+?guid=0016cc9e-fe7f-444b-bc6c-24de24b3c12f
+&startIndex=0
+&resultsToGet=1000
+&language=en-GB
+&requestedElements=7004 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
 # Search concepts
-POST {{baseUrl}}/Stabu/SearchConcepts
+POST {{baseUrl}}/Systematic/SearchConcepts
 ?startIndex=0
 &resultsToGet=1000
 &includeConceptGroups=false HTTP/2.0
@@ -91,7 +122,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search concepts
-POST {{baseUrl}}/Stabu/SearchConcepts
+POST {{baseUrl}}/Systematic/SearchConcepts
 ?startIndex=0
 &resultsToGet=1000
 &includeConceptGroups=false HTTP/2.0
@@ -107,7 +138,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search concepts with groups included in result
-POST {{baseUrl}}/Stabu/SearchConcepts
+POST {{baseUrl}}/Systematic/SearchConcepts
 ?startIndex=0
 &resultsToGet=1000
 &includeConceptGroups=true HTTP/2.0
@@ -124,7 +155,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get customer
-GET {{baseUrl}}/Stabu/GetCustomerById
+GET {{baseUrl}}/Systematic/GetCustomerById
 ?id=5668 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
@@ -132,13 +163,19 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get manufacturer by concept guid
-GET {{baseUrl}}/Stabu/GetManufacturerByConceptGUID
+GET {{baseUrl}}/Systematic/GetManufacturerByConceptGUID
 ?guid=6cede606-9b73-4b08-ae7d-c1c5492e19a1 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get all concept group types
-GET {{baseUrl}}/Stabu/GetAllConceptGroupTypes HTTP/2.0
+GET {{baseUrl}}/Systematic/GetAllConceptGroupTypes HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get all concept variant types
+GET {{baseUrl}}/Systematic/GetAllConceptVariantTypes HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

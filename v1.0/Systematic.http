@@ -6,17 +6,101 @@
 POST {{authUrl}}/connect/token HTTP/2.0
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password
+grant_type=client_credentials
 &client_id={{client_id}}
 &client_secret={{client_secret}}
-&username={{user_name}}
-&password={{user_password}}
+# &username={{user_name}}
+# &password={{user_password}}
 &scope=Api ApiSystematic
 
 ###
 # Get version
 GET {{baseUrl}}/Systematic/GetVersion HTTP/2.0
 Content-Type: application/json
+
+###
+# Get all manufacturers by search criteria
+POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteriaOnConcept
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "searchcriteria": ["holonite", "rodeca"],
+    "flags": "Contains",
+    "searchOnFlags": "all"
+}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptByCustomerId
+?customerId=6605
+&headersOnly=true
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptByGUID
+?guid=00016fae-fbbb-41c1-b12f-669737202ef6
+&headersOnly=true
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get last changed concept
+GET {{baseUrl}}/Systematic/GetConceptLastChange
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
+?guid=136b0ab6-f1bc-45c3-9ee5-2a13962ff706
+&headersOnly=false
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptByDerivedfromGUID
+?derivedfromGuid=9d390f4f-dbf2-4df3-a576-2a86028c1f80
+&headersOnly=false
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+
+###
+# Get all manufacturers by search criteria
+POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteria
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "searchcriteria": ["bouw", "attema"],
+    "flags": "Contains",
+    "searchOnFlags": "all"
+}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptLatestversionNoByGuid
+?guid=0002b6f6-f241-4db2-a321-a1961edfd970
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get last changed index
+GET {{baseUrl}}/Systematic/GetIndexLastChange
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+
+###
+# Get all manufacturers
+GET {{baseUrl}}/Systematic/GetManufacturerAll
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 
 ###
@@ -164,7 +248,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 ###
 # Get manufacturer by concept guid
 GET {{baseUrl}}/Systematic/GetManufacturerByConceptGUID
-?guid=6cede606-9b73-4b08-ae7d-c1c5492e19a1 HTTP/2.0
+?guid=0012f529-14b5-4667-9c2b-4a18ece17245 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 

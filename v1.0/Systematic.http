@@ -18,6 +18,8 @@ grant_type=client_credentials
 GET {{baseUrl}}/Systematic/GetVersion HTTP/2.0
 Content-Type: application/json
 
+
+
 ###
 # Get all manufacturers by search criteria
 POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteriaOnConcept
@@ -41,7 +43,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 ###
 # Get condept version by guid
 GET {{baseUrl}}/Systematic/GetConceptByGUID
-?guid=00016fae-fbbb-41c1-b12f-669737202ef6
+?guid=04b337d6-1c32-4c8f-adfc-a1aaa964f9a8
 &headersOnly=true
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
@@ -55,7 +57,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 ###
 # Get condept version by guid
 GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
-?guid=136b0ab6-f1bc-45c3-9ee5-2a13962ff706
+?guid=67a1718a-f51c-47e3-b943-7fce2af7a5b7
 &headersOnly=false
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
@@ -214,10 +216,7 @@ Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 {
-    "Flags": ["AlsoExistingWork"],
-    "IndexLinks": ["4c155578-0137-432f-bad4-2e18762d2465", "55904b2e-d9e3-4ff7-8b28-ad0daa4a2e8a"],
-    "Keywords": "a?nbr?ngen*",
-    "DocumentCode": "RR425530*"
+    "IndexLinks": ["04b0115a-594d-47df-ad9d-d623a3acc6fa"]
 }
 
 ###

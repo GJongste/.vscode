@@ -18,8 +18,6 @@ grant_type=client_credentials
 GET {{baseUrl}}/Systematic/GetVersion HTTP/2.0
 Content-Type: application/json
 
-
-
 ###
 # Get all manufacturers by search criteria
 POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteriaOnConcept
@@ -57,20 +55,10 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 ###
 # Get condept version by guid
 GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
-?guid=67a1718a-f51c-47e3-b943-7fce2af7a5b7
+?guid=0000d540-b4c5-4342-935e-e1bc67276ae5
 &headersOnly=false
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
-
-
-###
-# Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptByDerivedfromGUID
-?derivedfromGuid=9d390f4f-dbf2-4df3-a576-2a86028c1f80
-&headersOnly=false
-Content-Type: application/json
-Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
-
 
 ###
 # Get all manufacturers by search criteria
@@ -83,13 +71,6 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
     "flags": "Contains",
     "searchOnFlags": "all"
 }
-
-###
-# Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptLatestversionNoByGuid
-?guid=0002b6f6-f241-4db2-a321-a1961edfd970
-Content-Type: application/json
-Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get last changed index
@@ -191,35 +172,6 @@ Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
-# Search concepts
-POST {{baseUrl}}/Systematic/SearchConcepts
-?startIndex=0
-&resultsToGet=1000
-&includeConceptGroups=false HTTP/2.0
-Content-Type: application/json
-Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
-
-{
-    "Guid": "6d22ea56-fea7-4133-833e-aa2a67c23c90",
-    "GroupTypeId": 2,
-    "VariantTypeId": 38,
-    "CustomerName": "*Beschlage*"
-}
-
-###
-# Search concepts
-POST {{baseUrl}}/Systematic/SearchConcepts
-?startIndex=0
-&resultsToGet=1000
-&includeConceptGroups=false HTTP/2.0
-Content-Type: application/json
-Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
-
-{
-    "IndexLinks": ["04b0115a-594d-47df-ad9d-d623a3acc6fa"]
-}
-
-###
 # Search concepts with groups included in result
 POST {{baseUrl}}/Systematic/SearchConcepts
 ?startIndex=0
@@ -237,6 +189,19 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 }
 
 ###
+# Search concepts with groups
+POST {{baseUrl}}/Systematic/SearchConcepts
+?startIndex=0
+&resultsToGet=1000
+&includeConceptGroups=true HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+    "Guid": "04b48601-6917-4ef5-8258-d4aa61e4b099"
+}
+
+###
 # Get customer
 GET {{baseUrl}}/Systematic/GetCustomerById
 ?id=5668 HTTP/2.0
@@ -248,12 +213,6 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 # Get manufacturer by concept guid
 GET {{baseUrl}}/Systematic/GetManufacturerByConceptGUID
 ?guid=0012f529-14b5-4667-9c2b-4a18ece17245 HTTP/2.0
-Content-Type: application/json
-Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
-
-###
-# Get all concept group types
-GET {{baseUrl}}/Systematic/GetAllConceptGroupTypes HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 

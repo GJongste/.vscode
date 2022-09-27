@@ -48,6 +48,6 @@ Some variables are used from the settings file.
 * Open one of the .http files in Visual Studio Code
 * Switch the environment in the Status bar to "production"
 * Click on "Send Request" in the "ClientCredentialsGrant". Or place your cursor between ### and ### and use the keyboard shortcut ctrl-alt-r. This service will fetch an access-token that will be used in subsequential requests.
-* Systematic.http implements the Authorization Code Flow. This is a two step proces. 1. Click on "Send Request" in the "login" to login as an end user. 2. Copy/paste the authorization code value in the return URL, replacing [INSERT_CODE_FROM_RETURNURL] under the "AuthorizationCode" segment en click on "Send Request". For the Systematic API the ClientCredentialsGrant is only available on request for development/testing.
+* Systematic.http implements the Authorization Code Flow. This is a two step proces. 1. Click on "Send Request" in the "login" to login as an end user (opens external web browser). 2. Copy/paste the authorization code value in the return URL, replacing [INSERT_CODE_FROM_RETURNURL] under the "AuthorizationCode" segment en click on "Send Request". For the Systematic API the ClientCredentialsGrant is only available on request for development/testing.
 * Next click on "Send Request" above one of the service calls.
 

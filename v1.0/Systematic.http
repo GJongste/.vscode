@@ -2,6 +2,28 @@
 ### variables from .vscode/settings.json
 
 ###
+# @name login
+POST {{authUrl}}/connect/Authorize HTTP/2.0
+Content-Type: application/x-www-form-urlencoded
+
+response_type=code
+&client_id={{client_id}}
+&redirect_uri=https://localhost
+&scope=Api ApiSystematic
+
+###
+# @name AuthorizationCode
+POST {{authUrl}}/connect/token HTTP/2.0
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&code=[INSERT_CODE_FROM_RETURNURL]
+&redirect_uri=https://localhost
+&scope=Api ApiSystematic
+
+###
 # @name ClientCredentialsGrant
 POST {{authUrl}}/connect/token HTTP/2.0
 Content-Type: application/x-www-form-urlencoded
@@ -9,8 +31,6 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials
 &client_id={{client_id}}
 &client_secret={{client_secret}}
-# &username={{user_name}}
-# &password={{user_password}}
 &scope=Api ApiSystematic
 
 ###

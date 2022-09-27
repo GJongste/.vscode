@@ -19,6 +19,42 @@ GET {{baseUrl}}/Systematic/GetVersion HTTP/2.0
 Content-Type: application/json
 
 ###
+# Get a collection containing all the urls in a concept
+GET {{baseUrl}}/Systematic/GetUrlByConceptGuid
+?guid=00040fd1-c95e-45c4-b3b5-8733cd07b2b7
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetAllConceptGroupTypes
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptByCustomerId
+?customerId=6605
+&headersOnly=true
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptLatestversionNoByGuid
+?guid=2e172648-df5f-4890-b61f-0b310bdbe826
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Get condept version by guid
+GET {{baseUrl}}/Systematic/GetConceptByDerivedfromGUID
+?derivedfromGuid=00408d1f-acd3-4e02-bc95-fe129d457cab
+&headersOnly=true
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
 # Get all manufacturers by search criteria
 POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteriaOnConcept
 Content-Type: application/json
@@ -29,14 +65,6 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
     "flags": "Contains",
     "searchOnFlags": "all"
 }
-
-###
-# Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptByCustomerId
-?customerId=6605
-&headersOnly=true
-Content-Type: application/json
-Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
@@ -55,7 +83,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 ###
 # Get condept version by guid
 GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
-?guid=0000d540-b4c5-4342-935e-e1bc67276ae5
+?guid=4770aa3b-1c18-4fb5-88d4-82e23e8ba557
 &headersOnly=false
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
@@ -212,7 +240,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 ###
 # Get manufacturer by concept guid
 GET {{baseUrl}}/Systematic/GetManufacturerByConceptGUID
-?guid=0012f529-14b5-4667-9c2b-4a18ece17245 HTTP/2.0
+?guid=0012f529-4667-4667-9c2b-4a18ece17245 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 

@@ -15,7 +15,7 @@ grant_type=authorization_code
 &response_type=code
 &client_id={{client_id}}
 &redirect_uri=https://localhost
-&scope=openid Api ApiSystematic
+&scope=openid Api ApiSystematic offline_access
 &code_challenge=KsfDpHBIrhteUa9OezXFuhaXsV77POTEl6avU66UDvU
 &code_challenge_method=S256
 

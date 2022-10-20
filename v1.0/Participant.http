@@ -53,6 +53,25 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 }
 
 ###
+# Search with Filters Certified
+POST {{baseUrl}}/Participant/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"From": 0,
+	"Size": 10,
+	"OnlySearchCertified": true,
+	"SearchString": "",
+	"Filters": [
+		{"Code":"CertificateStandard", "Values": ["DICO"]},
+		{"Code":"CertificateProject", "Values": ["DICO Transactieberichten"]},
+		{"Code":"CertificateSpecification", "Values": ["Invoice (Factuur)"]},
+		{"Code":"CertificateVersion", "Values": ["005"]}
+	]
+}
+
+###
 # Search with Sorting
 POST {{baseUrl}}/Participant/Search HTTP/1.1
 Content-Type: application/json
@@ -97,6 +116,21 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 		{"Code":"BusinessTypes", "Values": ["Bouwbedrijf"]}
 		]
 }
+
+###
+# Aggs
+POST {{baseUrl}}/Participant/Aggregations HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"OnlySearchCertified": true,
+	"SearchString": "",
+	"Filters": [
+		{"Code":"CertificateSpecification", "Values": ["Invoice (Factuur)"]}
+	]
+}
+
 
 ###
 # Profile

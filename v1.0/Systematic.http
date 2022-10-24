@@ -48,25 +48,25 @@ grant_type=client_credentials
 
 ###
 # Get version
-GET {{baseUrl}}/Systematic/GetVersion HTTP/2.0
+GET {{baseUrl}}/api/v1/Systematic/GetVersion HTTP/2.0
 Content-Type: application/json
 
 ###
 # Get a collection containing all the urls in a concept
-GET {{baseUrl}}/Systematic/GetUrlByConceptGuid
+GET {{baseUrl}}/api/v1/Systematic/GetUrlByConceptGuid
 ?guid=00040fd1-c95e-45c4-b3b5-8733cd07b2b7
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/Systematic/GetAllConceptGroupTypes
+GET {{baseUrl}}/api/v1/Systematic/GetAllConceptGroupTypes
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptByCustomerId
+GET {{baseUrl}}/api/v1/Systematic/GetConceptByCustomerId
 ?customerId=6605
 &headersOnly=true
 Content-Type: application/json
@@ -74,14 +74,14 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptLatestversionNoByGuid
+GET {{baseUrl}}/api/v1/Systematic/GetConceptLatestversionNoByGuid
 ?guid=2e172648-df5f-4890-b61f-0b310bdbe826
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptByDerivedfromGUID
+GET {{baseUrl}}/api/v1/Systematic/GetConceptByDerivedfromGUID
 ?derivedfromGuid=00408d1f-acd3-4e02-bc95-fe129d457cab
 &headersOnly=true
 Content-Type: application/json
@@ -89,7 +89,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get all manufacturers by search criteria
-POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteriaOnConcept
+POST {{baseUrl}}/api/v1/Systematic/GetManufacturerBySearchcriteriaOnConcept
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
@@ -101,7 +101,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptByGUID
+GET {{baseUrl}}/api/v1/Systematic/GetConceptByGUID
 ?guid=04b337d6-1c32-4c8f-adfc-a1aaa964f9a8
 &headersOnly=true
 Content-Type: application/json
@@ -109,13 +109,13 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get last changed concept
-GET {{baseUrl}}/Systematic/GetConceptLastChange
+GET {{baseUrl}}/api/v1/Systematic/GetConceptLastChange
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
+GET {{baseUrl}}/api/v1/Systematic/GetConceptByIndexGUID
 ?guid=4770aa3b-1c18-4fb5-88d4-82e23e8ba557
 &headersOnly=false
 Content-Type: application/json
@@ -123,7 +123,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get all manufacturers by search criteria
-POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteria
+POST {{baseUrl}}/api/v1/Systematic/GetManufacturerBySearchcriteria
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
@@ -135,21 +135,21 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get last changed index
-GET {{baseUrl}}/Systematic/GetIndexLastChange
+GET {{baseUrl}}/api/v1/Systematic/GetIndexLastChange
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 
 ###
 # Get all manufacturers
-GET {{baseUrl}}/Systematic/GetManufacturerAll
+GET {{baseUrl}}/api/v1/Systematic/GetManufacturerAll
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 
 ###
 # Get index categories
-GET {{baseUrl}}/Systematic/GetIndexCategories
+GET {{baseUrl}}/api/v1/Systematic/GetIndexCategories
 ?startIndex=0
 &resultsToGet=1000 HTTP/2.0
 Content-Type: application/json
@@ -157,7 +157,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get filtered index categories
-GET {{baseUrl}}/Systematic/GetIndexCategories
+GET {{baseUrl}}/api/v1/Systematic/GetIndexCategories
 ?startIndex=0
 &resultsToGet=1000
 &requestedElements=7000,7001,7002,7003,7004 HTTP/2.0
@@ -166,7 +166,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get index categories
-GET {{baseUrl}}/Systematic/GetIndexCategoriesByParentId
+GET {{baseUrl}}/api/v1/Systematic/GetIndexCategoriesByParentId
 ?parentId=8002
 &startIndex=0
 &resultsToGet=1000 HTTP/2.0
@@ -175,7 +175,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get root indexes
-GET {{baseUrl}}/Systematic/GetStartingPoints
+GET {{baseUrl}}/api/v1/Systematic/GetStartingPoints
 ?startIndex=0
 &resultsToGet=1000
 &language=en-GB HTTP/2.0
@@ -184,7 +184,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get index
-GET {{baseUrl}}/Systematic/GetIndexByGUID
+GET {{baseUrl}}/api/v1/Systematic/GetIndexByGUID
 ?guid=c54ed438-7b17-4920-9be4-eb9967b733a6
 &language=en-GB HTTP/2.0
 Content-Type: application/json
@@ -192,7 +192,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get child indexes
-GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+GET {{baseUrl}}/api/v1/Systematic/GetIndexesByParentGUID
 ?guid=64071d09-ecea-45e8-b194-9d1c88bcc0c2
 &startIndex=0
 &resultsToGet=1000
@@ -202,7 +202,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get filtered child indexes
-GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+GET {{baseUrl}}/api/v1/Systematic/GetIndexesByParentGUID
 ?guid=64071d09-ecea-45e8-b194-9d1c88bcc0c2
 &startIndex=0
 &resultsToGet=1000
@@ -213,7 +213,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get parent indexes
-GET {{baseUrl}}/Systematic/GetIndexesByChildGUID
+GET {{baseUrl}}/api/v1/Systematic/GetIndexesByChildGUID
 ?guid=0016cc9e-fe7f-444b-bc6c-24de24b3c12f
 &startIndex=0
 &resultsToGet=1000
@@ -223,7 +223,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get filtered parent indexes
-GET {{baseUrl}}/Systematic/GetIndexesByChildGUID
+GET {{baseUrl}}/api/v1/Systematic/GetIndexesByChildGUID
 ?guid=0016cc9e-fe7f-444b-bc6c-24de24b3c12f
 &startIndex=0
 &resultsToGet=1000
@@ -234,7 +234,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Search concepts with groups included in result
-POST {{baseUrl}}/Systematic/SearchConcepts
+POST {{baseUrl}}/api/v1/Systematic/SearchConcepts
 ?startIndex=0
 &resultsToGet=1000
 &includeConceptGroups=true HTTP/2.0
@@ -251,7 +251,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Search concepts with groups
-POST {{baseUrl}}/Systematic/SearchConcepts
+POST {{baseUrl}}/api/v1/Systematic/SearchConcepts
 ?startIndex=0
 &resultsToGet=1000
 &includeConceptGroups=true HTTP/2.0
@@ -264,7 +264,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get customer
-GET {{baseUrl}}/Systematic/GetCustomerById
+GET {{baseUrl}}/api/v1/Systematic/GetCustomerById
 ?id=5668 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
@@ -272,13 +272,13 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get manufacturer by concept guid
-GET {{baseUrl}}/Systematic/GetManufacturerByConceptGUID
+GET {{baseUrl}}/api/v1/Systematic/GetManufacturerByConceptGUID
 ?guid=0012f529-4667-4667-9c2b-4a18ece17245 HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get all concept variant types
-GET {{baseUrl}}/Systematic/GetAllConceptVariantTypes HTTP/2.0
+GET {{baseUrl}}/api/v1/Systematic/GetAllConceptVariantTypes HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}

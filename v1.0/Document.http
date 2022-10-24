@@ -14,7 +14,7 @@ grant_type=client_credentials
 
 ###
 # Search
-POST {{baseUrl}}/Document/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Document/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -27,7 +27,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search
-POST {{baseUrl}}/Document/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Document/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 

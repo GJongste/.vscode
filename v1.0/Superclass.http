@@ -13,26 +13,26 @@ grant_type=client_credentials
 
 ###
 # LinkTypes
-GET {{baseUrl}}/Superclass/LinkTypes HTTP/1.1
+GET {{baseUrl}}/api/v1/Superclass/LinkTypes HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Types
-GET {{baseUrl}}/Superclass/Types HTTP/1.1
+GET {{baseUrl}}/api/v1/Superclass/Types HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Levels
-GET {{baseUrl}}/Superclass/Levels HTTP/1.1
+GET {{baseUrl}}/api/v1/Superclass/Levels HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 
 ###
 # Translations
-POST {{baseUrl}}/Superclass/Translations HTTP/1.1
+POST {{baseUrl}}/api/v1/Superclass/Translations HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -44,7 +44,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search
-POST {{baseUrl}}/Superclass/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Superclass/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -57,7 +57,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search
-POST {{baseUrl}}/Superclass/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Superclass/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -70,7 +70,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Features
-POST {{baseUrl}}/Superclass/Features HTTP/1.1
+POST {{baseUrl}}/api/v1/Superclass/Features HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -80,7 +80,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Links
-POST {{baseUrl}}/Superclass/Links HTTP/1.1
+POST {{baseUrl}}/api/v1/Superclass/Links HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -90,7 +90,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Children
-POST {{baseUrl}}/Superclass/Children HTTP/1.1
+POST {{baseUrl}}/api/v1/Superclass/Children HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -100,7 +100,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Details
-POST {{baseUrl}}/Superclass/Details HTTP/1.1
+POST {{baseUrl}}/api/v1/Superclass/Details HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -111,13 +111,13 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Tree
-GET {{baseUrl}}/Superclass/Tree HTTP/1.1
+GET {{baseUrl}}/api/v1/Superclass/Tree HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # TopLevel
-GET {{baseUrl}}/Superclass/TopLevel HTTP/1.1
+GET {{baseUrl}}/api/v1/Superclass/TopLevel HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 

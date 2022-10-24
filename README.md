@@ -35,7 +35,7 @@ Some variables are used from the settings file.
 "rest-client.environmentVariables": {
 	"production": {
 		"authUrl": "https://authorize.ketenstandaard.nl",
-		"baseUrl": "https://api.ketenstandaard.nl/api/v1",
+		"baseUrl": "https://api.ketenstandaard.nl",
 		"client_id": "",
 		"client_secret": ""
 	}

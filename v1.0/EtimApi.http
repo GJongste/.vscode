@@ -1,0 +1,40 @@
+
+### variables from .vscode/settings.json
+
+###
+# Ketenstandaard also offers a proxy to the ETIM Api
+# For testing the complete ETIM Api, you can use https://bitbucket.org/3xt/etimapi-rest-client
+# For using the ETIM Api via the Ketenstandaard proxy you need:
+# - permission for the Api and ApiEtimApi scope
+# - "authUrl": "https://authorize.ketenstandaard.nl"
+# - "baseUrl": "https://api.ketenstandaard.nl/ETIM"
+#
+# For testing just one call, you can use the code below
+###
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api ApiEtimApi
+
+
+###
+# Return all classes with description/synonyms in nl-NL
+# with 10 items per request starting at 0
+POST {{baseUrl}}/ETIM/api/v2.0/Class/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"From": 0,
+	"Size": 10,
+	"Languagecode": "nl-NL",
+	"Include": {
+		"Descriptions": true
+	}
+}

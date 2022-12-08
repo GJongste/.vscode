@@ -1,0 +1,241 @@
+
+### variables from .vscode/settings.json
+
+//
+// These examples are primarily meant to simulate/map the STABU2
+// ST2 Web service functions/approach
+//
+
+//
+// Use the following two step process with the authorization code flow
+// Replace PKCE code_challenge, code_challenge_method & with your own 
+// 
+
+### ACF STEP 1 - after "Send Request" click on the "Location" link in the response window
+# @name login
+POST {{authUrl}}/connect/Authorize HTTP/2.0
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&response_type=code
+&client_id={{client_id}}
+&redirect_uri=https://localhost
+&scope=Api ApiSystematic offline_access
+&code_challenge=KsfDpHBIrhteUa9OezXFuhaXsV77POTEl6avU66UDvU
+&code_challenge_method=S256
+
+### ACF STEP 2 - Paste the code from the return url in the reponse blow
+# @name AuthorizationCode
+POST {{authUrl}}/connect/token HTTP/2.0
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+
+grant_type=authorization_code
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&code_verifier=eyIxIjoyMzgsIjIiOjM1LCIzIjoxMDcsIjQiOjEyMH0
+&code=28EFB63A4A0C67FCEF6296B0080728FFA3CE407C242F85D9A7B6F864E9E89393
+&redirect_uri=https://localhost
+&scope=openid Api ApiSystematic
+
+//
+// Use the following only with the client credentials flow //
+// 
+
+###
+# @name AuthorizationCode
+POST {{authUrl}}/connect/token HTTP/2.0
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api ApiSystematic
+
+###
+# ST2 GetCatalogusVersion() 
+GET {{baseUrl}}/Systematic/GetVersion HTTP/2.0
+Content-Type: application/json
+
+###
+# Get root indexes - om (eenmalig) STAB2 GUID te achterhalen
+GET {{baseUrl}}/Systematic/GetStartingPoints
+?startIndex=0
+&resultsToGet=100
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+### 
+# Get STABU2 root index c9a9346c-a586-4432-8f6b-90e9f768d984
+GET {{baseUrl}}/Systematic/GetIndexByGUID
+?guid=c9a9346c-a586-4432-8f6b-90e9f768d984 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+###
+# Get STABU2 (filtered) index categories
+GET {{baseUrl}}/Systematic/GetIndexCategories
+?startIndex=0
+&resultsToGet=100
+&requestedElements=8002,8004,8005,8006,8007,8008,8009,8010,8011
+&rootID=8002 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+### GetHoofdstukken()
+# Get STABU2 HOOFDSTUKKEN onder STABU2 root index d63c96aa-8554-444b-b380-677ebc6b74d9
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+?guid=d63c96aa-8554-444b-b380-677ebc6b74d9
+&requestedElements=8004 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+### GetParagrafen()
+# Get STABU2 PARAGRAFEN (Index Category ID = 8004) onder een hoofdstuk 33 - f79ee835-7254-48a1-be1f-d72329a8be1d
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+?guid=f79ee835-7254-48a1-be1f-d72329a8be1d
+&requestedElements=8005 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+### GetArtikelen()
+# Get STABU2 ARTIKELEN (Index Category ID = 8008) onder een paragraaf 33.00 ALGEMEEN - 23397232-4ea2-4935-aba1-e67d9a59518e
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+?guid=23397232-4ea2-4935-aba1-e67d9a59518e
+&requestedElements=8008 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+### GetKortteksten()
+# Get STABU2 KORTTEKSTEN (Index Category ID = 8006) onder een paragraaf 33.12 WERKBESCHEIDEN - 23397232-4ea2-4935-aba1-e67d9a59518e
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+?guid=df712903-7dc0-40ff-a1e3-5a082e03cce0
+&requestedElements=8006 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+### GetRubrieken()
+# Get STABU2 RUBRIEKEN/BOUWDELEN (Index Category ID = 8010 & 8011) onder een paragraaf 33.12.10 TEKENINGEN DAKBEDEKKINGEN - adf1ec14-6fc4-4d39-9337-b482c5b2ec4c
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
+?guid=adf1ec14-6fc4-4d39-9337-b482c5b2ec4c
+&requestedElements=8010,8011 HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+###
+# Get all Index nodes by search criteria - by full location "wildcard & STABU2 filter (indexCategoryRootId = 8002)
+POST {{baseUrl}}/Systematic/GetIndexesBySearchcriteria
+Searchcriteria
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{
+  "fullLocation": "30.34.*",
+  "indexCategoryRootId": 8002
+}
+
+###
+# Get index nodes by full location by specific full location ("30.34.11") & STABU2 filter (indexCategoryRootId = 8002)
+POST {{baseUrl}}/Systematic/GetIndexesBySearchcriteria
+Searchcriteria
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{
+  "fullLocation": "30.34.11",
+  "indexCategoryRootId": 8002
+}
+
+###
+# GetSpecificatieVarianten() onder specificatierubriek B412220 HOUTEN RAAM (by Index GUID) - 489696c7-8710-458a-9f1a-f25547c0ddf9
+GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
+?guid=489696c7-8710-458a-9f1a-f25547c0ddf9
+&headersOnly=true
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+###
+# GetSpecificatieVariant (FPS) onder BB412220.001.c01 HOUTEN RAAMSET - e9593f24-2ea6-4200-af6d-420e114b03ce 
+GET {{baseUrl}}/Systematic/GetConceptByDerivedfromGUID
+?derivedfromGuid=e9593f24-2ea6-4200-af6d-420e114b03ce
+&headersOnly=true
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+###
+# GetSpecificatieVariant (FPS) onder BB412220.001.c01 HOUTEN RAAMSET via documentcode groep (SearchCriteria)
+POST {{baseUrl}}/Systematic/GetConceptsBySearchcriteria
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{   
+
+  "documentCode": "?B412220.001.f02",
+  "variantTypeID": 38 
+}
+
+###
+# GetGetGerelateerdePosten |||| GetIndexesBySearchcriteria - WORK IN PROGRESS ||||
+POST {{baseUrl}}/Systematic/GetIndexesBySearchcriteria
+Searchcriteria
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{
+  "name":"B332141",
+  "indexCategoryRootId":8002,
+  "indexCategoryId":8006
+}
+
+
+###
+# ST2 GetSpecificatieVarianten (onderleggers & FPS-en) o.b.v. groep
+POST {{baseUrl}}/Systematic/GetConceptsBySearchcriteria
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{   
+
+  "documentCode": "*B332141.*"
+}
+
+### 
+# ST2 GetAllBouwdelen() by SearchCriteria filter (indexCategoryRootId = 8002)
+POST {{baseUrl}}/Systematic/GetIndexesBySearchcriteria
+?resultsToGet=1000
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{
+    "indexCategoryId":8011
+}
+
+###
+# Get all manufacturers by search criteria
+POST {{baseUrl}}/Systematic/GetManufacturerBySearchcriteriaOnSpecs
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{   
+  "customerName": "Aluk"
+}
+
+###
+# Find Locations by conceptGUID
+GET {{baseUrl}}/Systematic/FindLocationsByConceptGuid
+?guid=54af85bb-3858-4d94-984a-ed87af9a5140
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+###
+# Find Locations by indexGUID
+GET {{baseUrl}}/Systematic/FindLocationsByIndexGuid
+?guid=f0bb1226-14f1-433d-a108-c08523c6c66e
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+###
+# Get condepts by manufacturer (customer)
+GET {{baseUrl}}/Systematic/GetConceptByCustomerId
+?customerId=5315
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}

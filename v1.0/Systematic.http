@@ -66,8 +66,8 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/api/v1/Systematic/GetConceptByCustomerId
-?customerId=6605
+GET {{baseUrl}}/Systematic/GetConceptByCustomerId
+?customerId=5315
 &headersOnly=true
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
@@ -89,7 +89,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get all manufacturers by search criteria
-POST {{baseUrl}}/api/v1/Systematic/GetManufacturerBySearchcriteriaOnConcept
+POST {{baseUrl}}/Systematic/GetManufacturersBySearchcriteria
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
@@ -115,15 +115,15 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/api/v1/Systematic/GetConceptByIndexGUID
-?guid=4770aa3b-1c18-4fb5-88d4-82e23e8ba557
-&headersOnly=false
+GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
+?guid=6c94d383-ed4c-4c93-8327-de21efd4ed46
+&headersOnly=true
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get all manufacturers by search criteria
-POST {{baseUrl}}/api/v1/Systematic/GetManufacturerBySearchcriteria
+POST {{baseUrl}}/Systematic/GetManufacturersBySearchcriteria
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
@@ -202,7 +202,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get filtered child indexes
-GET {{baseUrl}}/api/v1/Systematic/GetIndexesByParentGUID
+GET {{baseUrl}}/Systematic/GetIndexesByParentGUID
 ?guid=64071d09-ecea-45e8-b194-9d1c88bcc0c2
 &startIndex=0
 &resultsToGet=1000
@@ -234,10 +234,10 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Search concepts with groups included in result
-POST {{baseUrl}}/api/v1/Systematic/SearchConcepts
+POST {{baseUrl}}/Systematic/GetConceptsBySearchcriteria
 ?startIndex=0
 &resultsToGet=1000
-&includeConceptGroups=true HTTP/2.0
+&headersOnly=true HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
@@ -246,12 +246,12 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
     "GroupTypeId": 2,
     "VariantTypeId": 38,
     "Status": "published",
-    "Name": "Maco*"
+    "DocumentCode": "BB831300*"
 }
 
 ###
-# Search concepts with groups
-POST {{baseUrl}}/api/v1/Systematic/SearchConcepts
+# Search specific concept (preferably use GetConceptByGUID instead!)
+POST {{baseUrl}}/Systematic/GetConceptsBySearchcriteria
 ?startIndex=0
 &resultsToGet=1000
 &includeConceptGroups=true HTTP/2.0

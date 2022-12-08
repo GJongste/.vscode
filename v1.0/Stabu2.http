@@ -33,7 +33,7 @@ grant_type=authorization_code
 &client_id={{client_id}}
 &client_secret={{client_secret}}
 &code_verifier=eyIxIjoyMzgsIjIiOjM1LCIzIjoxMDcsIjQiOjEyMH0
-&code=28EFB63A4A0C67FCEF6296B0080728FFA3CE407C242F85D9A7B6F864E9E89393
+&code=[INSERT_CODE_FROM_RETURNURL]
 &redirect_uri=https://localhost
 &scope=openid Api ApiSystematic
 

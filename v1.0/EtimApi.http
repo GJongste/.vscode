@@ -7,7 +7,7 @@
 # For using the ETIM Api via the Ketenstandaard proxy you need:
 # - permission for the Api and ApiEtimApi scope
 # - "authUrl": "https://authorize.ketenstandaard.nl"
-# - "baseUrl": "https://api.ketenstandaard.nl/ETIM"
+# - "baseUrl": "https://api.ketenstandaard.nl"
 #
 # For testing just one call, you can use the code below
 ###

@@ -2,14 +2,12 @@
 ### variables from .vscode/settings.json
 
 ###
-# Ketenstandaard also offers a proxy to the ETIM Api
-# For testing the complete ETIM Api, you can use https://bitbucket.org/3xt/etimapi-rest-client
-# For using the ETIM Api via the Ketenstandaard proxy you need:
-# - permission for the Api and ApiEtimApi scope
+# Ketenstandaard offers a proxy to the MessageService Api
+# For using the MessageService Api via the Ketenstandaard proxy you need:
+# - permission for the Api and DICO scope
 # - "authUrl": "https://authorize.ketenstandaard.nl"
-# - "baseUrl": "https://api.ketenstandaard.nl/ETIM"
+# - "baseUrl": "https://api.ketenstandaard.nl"
 #
-# For testing just one call, you can use the code below
 ###
 
 ###

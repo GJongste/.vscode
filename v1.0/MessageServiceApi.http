@@ -1,0 +1,379 @@
+
+### variables from .vscode/settings.json
+
+###
+# Ketenstandaard offers a proxy to the MessageService Api
+# For using the MessageService Api via the Ketenstandaard proxy you need:
+# - permission for the Api and DICO scope
+# - "authUrl": "https://authorize.ketenstandaard.nl"
+# - "baseUrl": "https://api.ketenstandaard.nl"
+#
+###
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api DICO
+
+
+###
+# Get Messages
+# 
+GET {{baseUrl}}/MessageService/api/v3.1/messages HTTP/1.1
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+Content-Type: application/json
+X-MessageType: PRICAT
+
+###
+# Get Message by Id
+# 
+GET {{baseUrl}}/MessageService/api/v3.1/messages/f8aa6594-0711-4e85-a3e9-dd5eede76e83 HTTP/1.1
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+Content-Type: application/json
+X-MessageType: PRICAT
+X-MessageFormat: SALES
+X-MessageVersion: 005
+
+###
+# Post Message
+# 
+POST {{baseUrl}}/MessageService/api/v3.1/messages HTTP/1.1
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+Content-Type: application/xml
+X-MessageType: PRICAT
+X-MessageFormat: SALES
+X-MessageVersion: 005
+
+<Order xsi:schemaLocation="http://www.ketenstandaard.nl/order/SALES/005 Order_SALES005.xsd" xmlns="http://www.ketenstandaard.nl/order/SALES/005" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:exs="http://www.ketenstandaard.nl/SALES/Extensies" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<OrderType>220</OrderType>
+	<OrderNumber>YT-1300 492727ZED</OrderNumber>
+	<OrderDate>2018-10-11</OrderDate>
+	<OrderTime>13:19:22</OrderTime>
+	<PartialDeliveryAllowed>true</PartialDeliveryAllowed>
+	<DraftOrderIndicator>false</DraftOrderIndicator>
+	<DeliveryOnDemandIndicator>false</DeliveryOnDemandIndicator>
+	<AdditionalInformation>Voor vragen: info@ketenstandaard.nl of 088 1500 800</AdditionalInformation>
+	<EndCustomerOrderNumber>199519622015</EndCustomerOrderNumber>
+	<ContractReference>
+		<ContractNumber>1917199019962035</ContractNumber>
+		<ContractDate>2018-10-11</ContractDate>
+	</ContractReference>
+	<ProjectNumber>DS-1</ProjectNumber>
+	<Attachment>
+		<Number>1</Number>
+		<CreationDate>2018-10-11</CreationDate>
+		<AttachedData>dGVzdA==</AttachedData>
+		<Type>LOG</Type>
+		<FileType>PDF</FileType>
+		<AttachmentName>
+			<Description>Logo en contactinformatie Ketenstandaard</Description>
+			<LanguageCode>nl</LanguageCode>
+		</AttachmentName>
+		<AttachmentName>
+			<Description>Logo and contactinformation pf Ketenstandaard</Description>
+			<LanguageCode>en</LanguageCode>
+		</AttachmentName>
+		<AttachmentDescription>
+			<Description>Informatie om contact op te nemen met Ketenstandaard voor het geval u vragen heeft.</Description>
+			<LanguageCode>nl</LanguageCode>
+		</AttachmentDescription>
+		<AttachmentDescription>
+			<Description>Contact information Ketenstandaard for anny questions you may have.</Description>
+			<LanguageCode>en</LanguageCode>
+		</AttachmentDescription>
+		<AttachmentCharacteristics>
+			<AttributeName>FileSize</AttributeName>
+			<AttributeValue>128</AttributeValue>
+		</AttachmentCharacteristics>
+	</Attachment>
+	<Attachment>
+		<Number>2</Number>
+		<CreationDate>2018-10-11</CreationDate>
+		<LocalLink>SALES Keurmerk.PDF</LocalLink>
+		<Type>PRT</Type>
+		<FileType>pdf</FileType>
+		<AttachmentName>
+			<Description>SALES Keurmerk informatie</Description>
+			<LanguageCode>nl</LanguageCode>
+		</AttachmentName>
+		<AttachmentName>
+			<Description>SALES Keurmerk information</Description>
+			<LanguageCode>en</LanguageCode>
+		</AttachmentName>
+		<AttachmentDescription>
+			<Description>Informatie over het SALES Keurmerk</Description>
+			<LanguageCode>nl</LanguageCode>
+		</AttachmentDescription>
+		<AttachmentDescription>
+			<Description>Information about the SALES Keurmerk</Description>
+			<LanguageCode>en</LanguageCode>
+		</AttachmentDescription>
+		<AttachmentCharacteristics>
+			<AttributeName>Author</AttributeName>
+			<AttributeValue>Ketenstandaard</AttributeValue>
+		</AttachmentCharacteristics>
+	</Attachment>
+	<BackhaulingIndicator>false</BackhaulingIndicator>
+	<TransportInstruction>
+		<TransportInstructionTypeCode>SEP</TransportInstructionTypeCode>
+	</TransportInstruction>
+	<TransportInstruction>
+		<TransportInstructionTypeCode>VKO</TransportInstructionTypeCode>
+		<DeliveryNoteText>Korte vrachtwagen, Smalle toegangsweg</DeliveryNoteText>
+	</TransportInstruction>
+	<DeliveryDateTimeInformation>
+		<DeliveryTimeFrame>
+			<DeliveryDateEarliest>2018-10-21</DeliveryDateEarliest>
+			<DeliveryTimeEarliest>07:00:00</DeliveryTimeEarliest>
+			<DeliveryDateLatest>2018-10-25</DeliveryDateLatest>
+			<DeliveryTimeLatest>17:00:00</DeliveryTimeLatest>
+		</DeliveryTimeFrame>
+	</DeliveryDateTimeInformation>
+	<Buyer>
+		<GLN>8714231772750</GLN>
+		<Name>Aannemer Ketenstandaard</Name>
+		<Street>Aannemerweg</Street>
+		<HouseNumber>200</HouseNumber>
+		<HouseLetter>C</HouseLetter>
+		<City>Utrecht</City>
+		<PostalCode>2233BX</PostalCode>
+		<Country>NL</Country>
+		<ContactInformation>
+			<ContactPersonName>Xandra Pietersen</ContactPersonName>
+			<PhoneNumber>06-18579714</PhoneNumber>
+			<EmailAddress>Xandra@aannemerketenstandaard.nl</EmailAddress>
+		</ContactInformation>
+	</Buyer>
+	<Supplier>
+		<GLN>8714252011609</GLN>
+		<Name>Groothandel Ketenstandaard Utrecht</Name>
+		<Street>Groothandelweg</Street>
+		<HouseNumber>100</HouseNumber>
+		<HouseLetter>A</HouseLetter>
+		<HouseNumberSuffix>bisA</HouseNumberSuffix>
+		<City>Utrecht</City>
+		<PostalCode>7788AZ</PostalCode>
+		<Country>NL</Country>
+		<ContactInformation>
+			<ContactPersonName>Jan Jansen</ContactPersonName>
+			<PhoneNumber>06-11223344</PhoneNumber>
+			<EmailAddress>info@producentketenstandaard.nl</EmailAddress>
+		</ContactInformation>
+	</Supplier>
+	<DeliveryParty>
+		<GLN>8712345123413</GLN>
+		<Name>Bouwplaats De Eerste Steen</Name>
+		<Name2>DeliveryParty staat voor afleveradres</Name2>
+		<Street>Oasisstraat</Street>
+		<HouseNumber>30</HouseNumber>
+		<City>Nijmegen</City>
+		<PostalCode>6663JD</PostalCode>
+		<Country>NL</Country>
+		<LocationDescription>Bouwplaats is tegenover dit adres</LocationDescription>
+		<ContactInformation>
+			<ContactPersonName>Rard Voorman</ContactPersonName>
+			<PhoneNumber>06-98765432</PhoneNumber>
+			<EmailAddress>Rard@aannemerketenstandaard.nl</EmailAddress>
+		</ContactInformation>
+	</DeliveryParty>
+	<ShipFrom>
+		<GLN>8719332111637</GLN>
+		<Name>Groothandel Ketenstandaard Tilburg</Name>
+		<Name2>Lokatie Tilburg</Name2>
+		<Street>Groothandellaan</Street>
+		<HouseNumber>16</HouseNumber>
+		<City>Tilburg</City>
+		<PostalCode>5037DA</PostalCode>
+		<Country>NL</Country>
+	</ShipFrom>
+	<Invoicee>
+		<GLN>5082345456914</GLN>
+		<Name>Ketenstandaard Global Contractors</Name>
+		<Street>Houghton St</Street>
+		<HouseNumber>1</HouseNumber>
+		<City>Londen</City>
+		<PostalCode>WC2A 2AE</PostalCode>
+		<Country>GB</Country>
+	</Invoicee>
+	<PurchasingOrganisation>
+		<GLN>8712345777715</GLN>
+		<Name>Ketenstandaard Inkooppartners</Name>
+		<Street>Gustav Mahlerlaan</Street>
+		<HouseNumber>320</HouseNumber>
+		<City>Amsterdam</City>
+		<PostalCode>1082ME</PostalCode>
+		<Country>NL</Country>
+	</PurchasingOrganisation>
+	<Carrier>
+		<GLN>8795135745637</GLN>
+		<Name>Ketenstandaard Logistiek</Name>
+		<Street>Mobilisatiedok</Street>
+		<HouseNumber>4</HouseNumber>
+		<City>Nieuwegein</City>
+		<PostalCode>3439JG</PostalCode>
+		<Country>NL</Country>
+	</Carrier>
+	<OrderLine>
+		<LineNumber>1</LineNumber>
+		<OrderedQuantity>104</OrderedQuantity>
+		<OrderedQuantityUoM>PCE</OrderedQuantityUoM>
+		<LineIdentification>0001</LineIdentification>
+		<AdditionalInformation>Gescheurde verpakking wordt niet geaccepteerd</AdditionalInformation>
+		<TradeItemIdentification>
+			<GTIN>08712345678906</GTIN>
+			<SuppliersTradeItemId>1442112</SuppliersTradeItemId>
+			<AdditionalItemIdentification>
+				<TradeItemDescription>ROCKWOOL Duo Isolatieplaat</TradeItemDescription>
+				<PhysicalDimensions>
+					<Width>100</Width>
+					<Height>80</Height>
+					<Depth>12</Depth>
+					<MeasurementUoM>CMT</MeasurementUoM>
+				</PhysicalDimensions>
+			</AdditionalItemIdentification>
+		</TradeItemIdentification>
+		<Attachment>
+			<Number>3</Number>
+			<Sequence>a.2</Sequence>
+			<CreationDate>2018-10-11</CreationDate>
+			<Type>MAN</Type>
+			<FileType>PDF</FileType>
+			<URLInformation>
+				<URL>https://www.ketenstandaard.nl/informatie/downloads/sales/sales005/</URL>
+				<OriginalSourceIndicator>true</OriginalSourceIndicator>
+			</URLInformation>
+			<AttachmentName>
+				<Description>Techische documentatie Databerichten SALES005</Description>
+				<LanguageCode>nl</LanguageCode>
+			</AttachmentName>
+			<AttachmentName>
+				<Description>Technical Documentation data messages SALES005</Description>
+				<LanguageCode>en</LanguageCode>
+			</AttachmentName>
+			<AttachmentDescription>
+				<Description>Beschrijving van de technische eigenschappen en de regels van de SALES005</Description>
+				<LanguageCode>nl</LanguageCode>
+			</AttachmentDescription>
+			<AttachmentDescription>
+				<Description>Description of the technical properties and rules concerning the SALES005</Description>
+				<LanguageCode>en</LanguageCode>
+			</AttachmentDescription>
+		</Attachment>
+		<TransportInstruction>
+			<TransportInstructionTypeCode>IEU</TransportInstructionTypeCode>
+			<DeliveryNoteText>Alleen de Rockwool, niet de rest! Heeft haast!</DeliveryNoteText>
+		</TransportInstruction>
+		<TransportInstruction>
+			<TransportInstructionTypeCode>VKO</TransportInstructionTypeCode>
+			<DeliveryNoteText>Korte vrachtwagen, Smalle toegangsweg</DeliveryNoteText>
+		</TransportInstruction>
+		<DeliveryDateTimeInformation>
+			<RequiredDeliveryDate>2018-10-15</RequiredDeliveryDate>
+			<RequiredDeliveryTime>23:59:00</RequiredDeliveryTime>
+		</DeliveryDateTimeInformation>
+	</OrderLine>
+	<OrderLine>
+		<LineNumber>2</LineNumber>
+		<OrderedQuantity>3</OrderedQuantity>
+		<OrderedQuantityUoM>PCE</OrderedQuantityUoM>
+		<LineIdentification>0002</LineIdentification>
+		<TradeItemIdentification>
+			<GTIN>08712345678944</GTIN>
+			<AdditionalItemIdentification>
+				<TradeItemDescription>Stanley klauwhamer 51-031 450G</TradeItemDescription>
+				<PhysicalDimensions>
+					<Width>100</Width>
+					<Height>80</Height>
+					<Depth>12</Depth>
+					<MeasurementUoM>CMT</MeasurementUoM>
+				</PhysicalDimensions>
+			</AdditionalItemIdentification>
+		</TradeItemIdentification>
+		<DifferentPriceAgreement>
+			<DifferentPriceAgreementIndicator>true</DifferentPriceAgreementIndicator>
+			<DifferentPrice>7.50</DifferentPrice>
+			<PriceBase>
+				<NumberOfUnitsInPriceBasis>1</NumberOfUnitsInPriceBasis>
+				<PriceBasisUoM>PCE</PriceBasisUoM>
+				<PriceBaseDescription>stuks</PriceBaseDescription>
+			</PriceBase>
+		</DifferentPriceAgreement>
+	</OrderLine>
+	<OrderLine>
+		<LineNumber>3</LineNumber>
+		<OrderedQuantity>21</OrderedQuantity>
+		<OrderedQuantityUoM>PCE</OrderedQuantityUoM>
+		<LineIdentification>0003</LineIdentification>
+		<TradeItemIdentification>
+			<GTIN>08712345678913</GTIN>
+			<SuppliersTradeItemId>5678</SuppliersTradeItemId>
+			<AdditionalItemIdentification>
+				<TradeItemDescription>Novipro gipsplaatschroef gefosfateerd</TradeItemDescription>
+				<PhysicalDimensions>
+					<Width>10</Width>
+					<Height>5</Height>
+					<Depth>5</Depth>
+					<MeasurementUoM>CMT</MeasurementUoM>
+				</PhysicalDimensions>
+			</AdditionalItemIdentification>
+		</TradeItemIdentification>
+	</OrderLine>
+	<OrderLine>
+		<LineNumber>4</LineNumber>
+		<OrderedQuantity>16</OrderedQuantity>
+		<OrderedQuantityUoM>PCE</OrderedQuantityUoM>
+		<LineIdentification>0004</LineIdentification>
+		<TradeItemIdentification>
+			<GTIN>08711438159445</GTIN>
+			<AdditionalItemIdentification>
+				<TradeItemDescription>Vuren balk 60x150mm lengte 4200mm</TradeItemDescription>
+			</AdditionalItemIdentification>
+		</TradeItemIdentification>
+		<Operations>
+			<OperationCode>Schaven</OperationCode>
+			<NumericValue>4.2</NumericValue>
+			<NumericValueUoM>MTR</NumericValueUoM>
+			<OperationPrice>0.42</OperationPrice>
+		</Operations>
+	</OrderLine>
+	<OrderLine>
+		<LineNumber>5</LineNumber>
+		<OrderedQuantity>2</OrderedQuantity>
+		<OrderedQuantityUoM>PCE</OrderedQuantityUoM>
+		<LineIdentification>0005</LineIdentification>
+		<TradeItemIdentification>
+			<GTIN>08798745644733</GTIN>
+		</TradeItemIdentification>
+	</OrderLine>
+	<OrderLine>
+		<LineNumber>6</LineNumber>
+		<OrderedQuantity>100</OrderedQuantity>
+		<OrderedQuantityUoM>PCE</OrderedQuantityUoM>
+		<LineIdentification>0006</LineIdentification>
+		<TradeItemIdentification>
+			<GTIN>08798745632133</GTIN>
+		</TradeItemIdentification>
+	</OrderLine>
+	<OrderLine>
+		<LineNumber>7</LineNumber>
+		<OrderedQuantity>24</OrderedQuantity>
+		<OrderedQuantityUoM>PCE</OrderedQuantityUoM>
+		<LineIdentification>0007</LineIdentification>
+		<TradeItemIdentification>
+			<GTIN>08712200249109</GTIN>
+		</TradeItemIdentification>
+	</OrderLine>
+</Order>
+
+
+###
+# Delete Message
+# 
+DELETE {{baseUrl}}/MessageService/api/v3.1/messages/f8aa6594-0711-4e85-a3e9-dd5eede76e83 HTTP/1.1
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+Content-Type: application/json

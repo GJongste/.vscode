@@ -14,7 +14,7 @@ grant_type=client_credentials
 
 ###
 # Search
-POST {{baseUrl}}/Participant/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Participant/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -26,7 +26,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search with SearchString
-POST {{baseUrl}}/Participant/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Participant/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -38,7 +38,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search with Filters
-POST {{baseUrl}}/Participant/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Participant/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -53,8 +53,27 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 }
 
 ###
+# Search with Filters Certified
+POST {{baseUrl}}/api/v1/Participant/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"From": 0,
+	"Size": 10,
+	"OnlySearchCertified": true,
+	"SearchString": "",
+	"Filters": [
+		{"Code":"CertificateStandard", "Values": ["DICO"]},
+		{"Code":"CertificateProject", "Values": ["DICO Transactieberichten"]},
+		{"Code":"CertificateSpecification", "Values": ["Invoice (Factuur)"]},
+		{"Code":"CertificateVersion", "Values": ["005"]}
+	]
+}
+
+###
 # Search with Sorting
-POST {{baseUrl}}/Participant/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Participant/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -71,7 +90,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Search on STABU licenseNumber
-POST {{baseUrl}}/Participant/Search HTTP/1.1
+POST {{baseUrl}}/api/v1/Participant/Search HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -86,7 +105,7 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Aggs
-POST {{baseUrl}}/Participant/Aggregations HTTP/1.1
+POST {{baseUrl}}/api/v1/Participant/Aggregations HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
@@ -99,13 +118,28 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 }
 
 ###
+# Aggs
+POST {{baseUrl}}/api/v1/Participant/Aggregations HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"OnlySearchCertified": true,
+	"SearchString": "",
+	"Filters": [
+		{"Code":"CertificateSpecification", "Values": ["Invoice (Factuur)"]}
+	]
+}
+
+
+###
 # Profile
-GET {{baseUrl}}/Participant/Profile/e689ae0e-dbb3-4c08-a1ef-df3f8f7784c6 HTTP/1.1
+GET {{baseUrl}}/api/v1/Participant/Profile/e689ae0e-dbb3-4c08-a1ef-df3f8f7784c6 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Participant GetBySlug
-GET {{baseUrl}}/Participant/GetBySlug/bouwfaktor HTTP/1.1
+GET {{baseUrl}}/api/v1/Participant/GetBySlug/bouwfaktor HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}

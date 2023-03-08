@@ -1,0 +1,46 @@
+
+### variables from .vscode/settings.json
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api ApiDocs
+
+
+###
+# Search
+POST {{baseUrl}}/api/v1/Document/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"From": 0,
+	"Size": 10,
+	"SearchString": "",
+	"IsPublic": true
+}
+
+###
+# Search
+POST {{baseUrl}}/api/v1/Document/Search HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"From": 0,
+	"Size": 10,
+	"SearchString": "ETIM",
+	"IsPublic": false,
+	"Filters": [
+		{"Code":"Standards", "Values": ["DICO","STABU","ETIM"]},
+		{"Code":"Years", "Values": ["2022", "2021"]},
+		{"Code":"Categories", "Values": ["API", "Handleidingen", "Publicaties"]},
+		{"Code":"TargetGroups", "Values": ["Aannemer", "Implementatiepartner", "Kennispartner"]}
+	]
+}
+

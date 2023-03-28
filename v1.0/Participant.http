@@ -9,7 +9,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials
 &client_id={{client_id}}
 &client_secret={{client_secret}}
-&scope=Api 
+&scope=Api ApiParticipant
 
 
 ###
@@ -143,3 +143,10 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 GET {{baseUrl}}/api/v1/Participant/GetBySlug/bouwfaktor HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Participant Get
+GET {{baseUrl}}/api/v1/Participant/Get/34b00336-56bd-4df0-abe6-b1e86c418483 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+

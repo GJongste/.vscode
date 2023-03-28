@@ -1,0 +1,91 @@
+
+### variables from .vscode/settings.json
+
+###
+# @name ClientCredentialsGrant
+POST {{authUrl}}/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{client_id}}
+&client_secret={{client_secret}}
+&scope=Api ApiParticipant
+
+
+###
+# RevenueCategories Get
+GET {{baseUrl}}/api/v1/Participant/RevenueCategories HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# BusinessTypes Get
+GET {{baseUrl}}/api/v1/Participant/BusinessTypes HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# TargetGroups Get
+GET {{baseUrl}}/api/v1/Participant/TargetGroups HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Countries Get
+GET {{baseUrl}}/api/v1/Participant/Countries HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# FpsUserScales Get
+GET {{baseUrl}}/api/v1/Participant/FpsUserScales HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+###
+# Create
+POST {{baseUrl}}/api/v1/Participant/Create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
+
+{
+	"IsImplementationPartner": false,
+	"isDico": false,
+	"isEtim": true,
+	"isStabu": true,
+	"isFps": true,
+	"revenueCategory": "OneToFiveMillion",
+	"wantsGln": true,
+	"totalStabuUsers": 10,
+	"fpsUsersScale": "UpToForty",
+	"targetGroup": "Aannemer",
+	"companyName": "TestBedrijf",
+	"companyPhone": "123123123", 
+	"companyWebsite":"https://www.test.nl",
+	"CompanyEmail":"test@test.nl",
+	"ChamberOfCommerceNumber": "12345678",
+	"VisitorStreet": "Straat",
+	"VisitorHouseNumber": "123",
+	"VisitorHouseNumberAddition":"",
+	"VisitorPostalCode":"1232AB", 
+	"VisitorCity":"Hank", 
+	"VisitorCountry": "NL", 
+	"ContactFirstName":"Piet",
+	"ContactMiddleName":"",
+	"ContactLastName": "Achternaam", 
+	"ContactEmail": "piet@test.nl", 
+	"ContactPhone": "123456789",
+	"ContactJobDescription": "Directeur",
+	"FinancialFirstName":"Jan",
+	"FinancialMiddleName":"van",
+	"FinancialLastName":"Achternaam",
+	"EmailCreditor":"creditor@test.nl", 
+	"EmailInvoice":"invoice@test.nl",
+	"NewsletterGeneral": false,
+	"NewsletterDico": false,
+	"NewsletterEtim": false,
+	"NewsletterStabu": false,
+	"PointerOutBy": "Pietje",
+	"Questions": "Ik heb verder geen vragen meer....",
+	"IsAgreed": true
+}

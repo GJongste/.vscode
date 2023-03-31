@@ -47,6 +47,15 @@ grant_type=client_credentials
 &scope=Api ApiSystematic
 
 ###
+# Get condept version by guid
+GET {{baseUrl}}/api/v1/Systematic/GetConceptByGUID
+?guid=263b47b3-4a3e-4c5e-bf4f-8738d268156a
+&headersOnly=false
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+
+###
 # Get version
 GET {{baseUrl}}/api/v1/Systematic/GetVersion HTTP/2.0
 Content-Type: application/json
@@ -98,14 +107,6 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
     "flags": "Contains",
     "searchOnFlags": "all"
 }
-
-###
-# Get condept version by guid
-GET {{baseUrl}}/api/v1/Systematic/GetConceptByGUID
-?guid=04b337d6-1c32-4c8f-adfc-a1aaa964f9a8
-&headersOnly=true
-Content-Type: application/json
-Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get last changed concept

@@ -14,37 +14,37 @@ grant_type=client_credentials
 
 ###
 # RevenueCategories Get
-GET {{baseUrl}}/api/v1/Participant/RevenueCategories HTTP/1.1
+GET {{baseUrl}}/api/v1/ParticipantMutate/RevenueCategories HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # BusinessTypes Get
-GET {{baseUrl}}/api/v1/Participant/BusinessTypes HTTP/1.1
+GET {{baseUrl}}/api/v1/ParticipantMutate/BusinessTypes HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # TargetGroups Get
-GET {{baseUrl}}/api/v1/Participant/TargetGroups HTTP/1.1
+GET {{baseUrl}}/api/v1/ParticipantMutate/TargetGroups HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Countries Get
-GET {{baseUrl}}/api/v1/Participant/Countries HTTP/1.1
+GET {{baseUrl}}/api/v1/ParticipantMutate/Countries HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # FpsUserScales Get
-GET {{baseUrl}}/api/v1/Participant/FpsUserScales HTTP/1.1
+GET {{baseUrl}}/api/v1/ParticipantMutate/FpsUserScales HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 
 ###
 # Create
-POST {{baseUrl}}/api/v1/Participant/Create HTTP/1.1
+POST {{baseUrl}}/api/v1/ParticipantMutate/Create HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 

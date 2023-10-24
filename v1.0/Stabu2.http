@@ -239,3 +239,12 @@ GET {{baseUrl}}/Systematic/GetConceptByCustomerId
 ?customerId=5315
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+###
+# Get concepts by manufacturer (customer) AND documentcode
+GET {{baseUrl}}/api/v1/Systematic/GetConceptByCustomerGuidAndDocumentCode
+?customerGuid=a3d46c8a-4fc5-4c7b-9c09-30afdaead636
+&documentCode=BB251115.300.f08
+&headersOnly=false
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}

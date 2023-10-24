@@ -44,12 +44,63 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials
 &client_id={{client_id}}
 &client_secret={{client_secret}}
-&scope=Api ApiSystematic
+&scope=Api STABU
+
+###
+# Search concepts with groups included in result
+POST {{baseUrl}}/api/v1/Systematic/GetConceptsBySearchcriteria
+?startIndex=0
+&resultsToGet=1000
+&headersOnly=true HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{
+    "Name": "kozijn",
+    "VariantTypeId": 38
+}
+
+###
+# Search concepts with groups included in result
+POST {{baseUrl}}/api/v1/Systematic/GetConceptAggsBySearchcriteria
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+{
+    "Name": "kozijn",
+    "VariantTypeId": 38
+}
+
+###
+# Get index
+# Document: df169783-78d9-41c8-adc8-fcdfd648b5e6 : "STABU2-Systematiek (ACC)"
+# Hoofdstuk: 9ff95a2a-c588-4e55-b722-0ae8182f8f9e: "KOZIJNEN, RAMEN DEUREN"
+# Paragraaf: 082b6151-feb0-4210-838e-670ba96995c8: "WERKBESCHEIDEN"
+# Korttekst: 15d7f106-f1e8-49fe-809f-756441192984: "TEKENINGEN"
+# Rubriek: 28320996-9705-4954-a71b-2a770fd3d141: "Tekeningen"
+
+GET {{baseUrl}}/api/v1/Systematic/GetIndexByGUID
+?guid=82ebd237-4d1e-4012-997e-3ffa215e4a46
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
+
+###
+# Get child indexes
+GET {{baseUrl}}/api/v1/Systematic/GetIndexesByParentGUID
+?guid=df169783-78d9-41c8-adc8-fcdfd648b5e6
+&startIndex=0
+&resultsToGet=1000
+&language=en-GB HTTP/2.0
+Content-Type: application/json
+Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
+
 
 ###
 # Get condept version by guid
 GET {{baseUrl}}/api/v1/Systematic/GetConceptByGUID
-?guid=263b47b3-4a3e-4c5e-bf4f-8738d268156a
+?guid=24e4063c-9202-4a2d-99c0-e0915348eab1
 &headersOnly=false
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
@@ -116,8 +167,8 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 
 ###
 # Get condept version by guid
-GET {{baseUrl}}/Systematic/GetConceptByIndexGUID
-?guid=6c94d383-ed4c-4c93-8327-de21efd4ed46
+GET {{baseUrl}}/api/v1/Systematic/GetConceptsByIndexGUID
+?guid=82ebd237-4d1e-4012-997e-3ffa215e4a46
 &headersOnly=true
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
@@ -186,7 +237,7 @@ Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}
 ###
 # Get index
 GET {{baseUrl}}/api/v1/Systematic/GetIndexByGUID
-?guid=c54ed438-7b17-4920-9be4-eb9967b733a6
+?guid=9ff95a2a-c588-4e55-b722-0ae8182f8f9e
 &language=en-GB HTTP/2.0
 Content-Type: application/json
 Authorization: Bearer {{AuthorizationCode.response.body.$.access_token}}

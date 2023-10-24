@@ -21,7 +21,10 @@ Authorization: Bearer {{ClientCredentialsGrant.response.body.$.access_token}}
 {
 	"From": 0,
 	"Size": 10,
-	"SearchString": ""
+	"SearchString": "",
+	"Filters": [
+		{"Code":"ContractCode", "Values": ["300"]}
+	]
 }
 
 ###
